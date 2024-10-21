@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    height: 250px;
+    background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/aa15ff7d-d333-4bf9-b115-95e18f63fe91/d5ynr9c-33aeebd0-1cd8-45d9-86fc-8431aa114534.png/v1/fit/w_400,h_238,q_70,strp/pokemon_x_y_battle_scene_by_jenske05_d5ynr9c-375w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MjM4IiwicGF0aCI6IlwvZlwvYWExNWZmN2QtZDMzMy00YmY5LWIxMTUtOTVlMThmNjNmZTkxXC9kNXlucjljLTMzYWVlYmQwLTFjZDgtNDVkOS04NmZjLTg0MzFhYTExNDUzNC5wbmciLCJ3aWR0aCI6Ijw9NDAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.OBdWtDF4dYPDFNSQ8eb7Lr7LR7sUDNh6JPzH2hDrScU');
+    background-repeat: no-repeat;
+    .box-jogador, .box-jogador {
+        height: 200px;
+    }
+
+    .box-oponente {
+        display: flex;
+        flex-direction: row;
+        &__image {
+            width: 40%;
+        }
+        &__status {
+            width: 60%;
+        }
+    }
+    
+    .box-jogador {
+        display: flex;
+        flex-direction: row;
+        &__image {
+            width: 40%;
+        }
+        &__status {
+            width: 60%;
+        }
+    }
+}
+
+.barra-energia {
+    width: 200px;
+    height: 15px;
+    border-radius: 20px 20px;
+    background-color: white;
+    border: 1px solid #ccc;
+    display: flex;
+}
+
+.energia {
+    background-color: #368900;
+    width: 100%;
+    border-radius: 20px 20px;
+}
