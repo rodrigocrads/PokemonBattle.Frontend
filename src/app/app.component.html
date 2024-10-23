@@ -1,21 +1,21 @@
 <div class="container">
   <div class="box-oponente">
     <div class="box-oponente__status">
-      <div class="box-oponente__status-nome">Charizard</div>
+      <div class="box-oponente__status-nome">{{pokemonOponenteEscolhido.Name}}</div>
       <div class="barra-energia">
         <div class="energia" [style]="calculaEnergia()"></div>
       </div>
     </div>
     <div class="box-oponente__image">
-      <img src="https://projectpokemon.org/images/normal-sprite/charizard.gif" />
+      <img [src]="pokemonOponenteEscolhidoImage" />
     </div>
   </div>
   <div class="box-jogador">
     <div class="box-jogador__image">
-      <img src="https://projectpokemon.org/images/normal-sprite/venusaur.gif" />
+      <img [src]="meuPokemonEscolhidoImage" />
     </div>
     <div class="box-jogador__status">
-      <div class="nome">Venusaur</div>
+      <div class="nome">{{meuPokemonEscolhido.Name}}</div>
       <div class="barra-energia">
         <div class="energia"></div>
       </div>
