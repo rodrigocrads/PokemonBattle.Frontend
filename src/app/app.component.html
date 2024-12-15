@@ -3,7 +3,7 @@
     <div class="box-oponente__status">
       <div class="box-oponente__status-nome">{{pokemonOponenteEscolhido.Name}}</div>
       <div class="barra-energia">
-        <div class="energia" [style]="calculaEnergia()"></div>
+        <div class="energia" [style]="calculaEnergiaPokemonOponente()"></div>
       </div>
     </div>
     <div class="box-oponente__image">
@@ -17,7 +17,7 @@
     <div class="box-jogador__status">
       <div class="nome">{{meuPokemonEscolhido.Name}}</div>
       <div class="barra-energia">
-        <div class="energia"></div>
+        <div class="energia" [style]="calculaEnergiaMeuPokemon()"></div>
       </div>
     </div>
   </div>

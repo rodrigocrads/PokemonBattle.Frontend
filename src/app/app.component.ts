@@ -4,6 +4,7 @@ import { WebsocketService } from '../services/websocket.service';
 
 type Pokemon = {
   Name?: string;
+  Stats: { Hp: number; Damage: number; }
 }
 
 @Component({
@@ -15,11 +16,9 @@ type Pokemon = {
 })
 export class AppComponent implements OnInit {
   title = 'pokemonbattle.frontend';
-  energiaTotal = 300;
-  danoTotal = 0;
   playerId = '';
-  meuPokemonEscolhido: Pokemon = {};
-  pokemonOponenteEscolhido: Pokemon = {};
+  meuPokemonEscolhido: Pokemon = { Stats: { Hp: 0, Damage: 0 }};
+  pokemonOponenteEscolhido: Pokemon = { Stats: { Hp: 0, Damage: 0 }};
 
   constructor(
     @Inject('IWebSocket') public websocketService: WebsocketService 
@@ -35,13 +34,16 @@ export class AppComponent implements OnInit {
         ? jsonMensagem.Player1
         : jsonMensagem.Player2;
       this.meuPokemonEscolhido = dadosJogador.Pokemon;
+      console.log("atualizando ... meu pokemon", this.meuPokemonEscolhido);
       const dadosOponente = jsonMensagem.Player1.Id !== this.playerId
         ? jsonMensagem.Player1
         : jsonMensagem.Player2;
       this.pokemonOponenteEscolhido = dadosOponente.Pokemon;
     });
 
-    setTimeout(() => this.websocketService.sendMessage(JSON.stringify({type: 'REGISTER_PLAYER_ID', value: this.playerId})), 3000)
+    setTimeout(() => this.websocketService.sendMessage(JSON.stringify({type: 'REGISTER_PLAYER_ID', playerId: this.playerId, jogada: {}})), 5000);
+    const jsonString = JSON.stringify({name: "blastoise", hp: 350, atk: 400 });
+    //setTimeout(() => this.websocketService.sendMessage(JSON.stringify({type: 'REGISTER_PLAYER_ID', value: jsonString })), 5000);
   }
 
   get pokemonOponenteEscolhidoImage() {
@@ -53,12 +55,24 @@ export class AppComponent implements OnInit {
   }
   
   sendMessage() {
-    this.websocketService.sendMessage(JSON.stringify({type: 'ATK', value: 30}));
+    const message = JSON.stringify({
+      type: 'SELECTED_MOVE',
+      playerId: this.playerId,
+      value: 'surf'
+    });
+    console.log(message);
+    this.websocketService.sendMessage(message);
   }
 
-  calculaEnergia() {
-    const energiaRestante = this.energiaTotal - this.danoTotal;
-    const percentualEnergiaRestante = energiaRestante * 100 / this.energiaTotal;
+  calculaEnergiaPokemonOponente() {
+    const energiaRestante = this.pokemonOponenteEscolhido.Stats.Hp - this.pokemonOponenteEscolhido.Stats.Damage;
+    const percentualEnergiaRestante = energiaRestante * 100 / this.pokemonOponenteEscolhido.Stats.Hp;
+    return `width: ${percentualEnergiaRestante}%`;
+  }
+
+  calculaEnergiaMeuPokemon() {
+    const energiaRestante = this.meuPokemonEscolhido.Stats.Hp - this.meuPokemonEscolhido.Stats.Damage;
+    const percentualEnergiaRestante = energiaRestante * 100 / this.meuPokemonEscolhido.Stats.Hp;
     return `width: ${percentualEnergiaRestante}%`;
   }
 
